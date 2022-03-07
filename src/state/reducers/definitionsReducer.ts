@@ -1,3 +1,6 @@
+import { ActionTypes } from '../action-types/actionTypes';
+import { SearchActions } from '../action-interfaces/actionInterfaces';
+
 interface DefinitionsState {
   loading: boolean;
   error: string | null;
@@ -12,24 +15,24 @@ const defaultState = {
 
 const definitionsReducer = (
   state: DefinitionsState = defaultState,
-  action: any
-) => {
+  action: SearchActions
+): DefinitionsState => {
   switch (action.type) {
-    case 'search_definitions':
+    case ActionTypes.SERCH_DEFINITIONS:
       return {
         loading: true,
         error: null,
         data: [],
       };
 
-    case 'search_definitions_success':
+    case ActionTypes.SERCH_DEFINITIONS_SUCCESS:
       return {
-        lading: false,
+        loading: false,
         error: null,
         data: action.payload,
       };
 
-    case 'search_definitions_errors':
+    case ActionTypes.SERCH_DEFINITIONS_ERROR:
       return {
         loading: false,
         error: action.payload,
