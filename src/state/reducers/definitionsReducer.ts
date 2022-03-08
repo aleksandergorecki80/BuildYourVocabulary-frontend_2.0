@@ -4,7 +4,7 @@ import { SearchActions } from '../action-interfaces/actionInterfaces';
 interface DefinitionsState {
   loading: boolean;
   error: string | null;
-  data: string[];
+  data: {}[];
 }
 
 const defaultState = {

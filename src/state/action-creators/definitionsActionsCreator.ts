@@ -3,8 +3,6 @@ import { Dispatch } from "react";
 import { ActionTypes } from "../action-types/actionTypes";
 import { SearchActions } from "../action-interfaces/actionInterfaces";
 
-const tempResult = ['this', 'is','a', 'temp', 'arr'];
-
 export const fetchDefinitions = () => {
     return async (dispatch: Dispatch<SearchActions>) => {
         dispatch(
@@ -13,13 +11,19 @@ export const fetchDefinitions = () => {
         try {
             const result = await axios.get('/api/v1/words');
 
-            // ---  FORMAT PAYLOAD !!!   ---
-            dispatch({
-                type: ActionTypes.SERCH_DEFINITIONS_SUCCESS,
-                payload: tempResult
+            const payload = result.data.data.map((dataSet: any) => {
+                return {
+                    partOfSpeech: dataSet.partOfSpeech,
+                    word: dataSet.word,
+                    definition: dataSet.text
+                }
             })
 
-            console.log(result)
+            dispatch({
+                type: ActionTypes.SERCH_DEFINITIONS_SUCCESS,
+                payload: payload
+            })
+
         } catch (err: any ) {
             dispatch({
                 type: ActionTypes.SERCH_DEFINITIONS_ERROR,
