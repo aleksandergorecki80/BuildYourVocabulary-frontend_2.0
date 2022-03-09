@@ -1,17 +1,19 @@
+// import { useState } from 'react';
+import { useTypedSelector } from '../hooks/useTypedSelector';
 import Definition from './Definition';
 
-const partOfSpeach = 'This will be generated';
-
 const Definitions: React.FC = () => {
+
+  const { data, loading, error } = useTypedSelector((state) => state.definitions);
+
   return (
     <div>
-      {<p>Part of speach: {partOfSpeach}</p>}
-      <ul>
-        <Definition />
-        <Definition />
-        <Definition />
-        <div>show more</div>
-      </ul>
+    { loading ? <h3>Loading ...</h3> : '' }      
+    { error ? <h3>{error}</h3> : '' }      
+   
+    {data && data.map((definition: any, key) => {
+      return <Definition definition = {definition} key={key}/>
+    })}
     </div>
   );
 };

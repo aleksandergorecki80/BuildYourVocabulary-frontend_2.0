@@ -14,8 +14,8 @@ const App = () => {
       <div className="App">
         <h3>Build Your Vocabulary</h3>
         <LoadDefinitions />
-        <Answering />
         <Definitions />
+        <Answering />
       </div>
     </Provider>
   );

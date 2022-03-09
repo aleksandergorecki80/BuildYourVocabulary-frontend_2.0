@@ -3,6 +3,13 @@ import { Dispatch } from "react";
 import { ActionTypes } from "../action-types/actionTypes";
 import { SearchActions } from "../action-interfaces/actionInterfaces";
 
+
+// interface Payload {
+//     partOfSpeech: string;
+//     word: string;
+//     text: string;
+// }
+
 export const fetchDefinitions = () => {
     return async (dispatch: Dispatch<SearchActions>) => {
         dispatch(
@@ -15,9 +22,9 @@ export const fetchDefinitions = () => {
                 return {
                     partOfSpeech: dataSet.partOfSpeech,
                     word: dataSet.word,
-                    definition: dataSet.text
+                    text: dataSet.text
                 }
-            })
+            });
 
             dispatch({
                 type: ActionTypes.SERCH_DEFINITIONS_SUCCESS,
