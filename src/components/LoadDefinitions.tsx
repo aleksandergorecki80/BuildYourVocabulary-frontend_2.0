@@ -10,22 +10,23 @@ const LoadDefinitions: React.FC = () => {
 
   useEffect(() => {
     data.length > 0 ? setShowButton(false) : setShowButton(true);
-  }, [ data ])
+  }, [data]);
 
-   
   const onLoadDefinitions = () => {
     fetchDefinitions();
   };
 
-  return (
+  const loadingDiv = (
     <div>
       <p>
         Press the button to load random definition and try to guess the word it
         describes.
       </p>
-      {showButton ? <button onClick={onLoadDefinitions}>Load</button> : null}
+      <button onClick={onLoadDefinitions}>Load</button>
     </div>
   );
+
+  return <div>{showButton ? loadingDiv : null}</div>;
 };
 
 export default LoadDefinitions;

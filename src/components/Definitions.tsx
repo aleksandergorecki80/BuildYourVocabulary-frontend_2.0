@@ -1,4 +1,3 @@
-// import { useState } from 'react';
 import { useTypedSelector } from '../hooks/useTypedSelector';
 import Definition from './Definition';
 
@@ -12,7 +11,9 @@ const Definitions: React.FC = () => {
     { error ? <h3>{error}</h3> : '' }      
    
     {data && data.map((definition: any, key) => {
-      return <Definition definition = {definition} key={key}/>
+      return definition.text && definition.partOfSpeech 
+        ? <Definition definition = {definition} key={key}/>
+        : null
     })}
     </div>
   );
