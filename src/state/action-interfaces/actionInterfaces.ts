@@ -6,7 +6,7 @@ interface SearchDefinitions {
 
 interface SearchDefinitionsSuccess {
   type: ActionTypes.SERCH_DEFINITIONS_SUCCESS;
-  payload: {}[];
+  payload: [];
 }
 
 interface SearchDefinitionsError {

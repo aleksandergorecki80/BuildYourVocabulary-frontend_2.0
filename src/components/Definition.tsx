@@ -1,7 +1,7 @@
 interface ChildProps {
   definition: {
-    partOfSpeech?: string;
-    text?: string;
+    partOfSpeech: string;
+    text: string;
   }
 }
 

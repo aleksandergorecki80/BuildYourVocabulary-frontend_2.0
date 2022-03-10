@@ -5,6 +5,12 @@ const Definitions: React.FC = () => {
 
   const { data, loading, error } = useTypedSelector((state) => state.definitions);
 
+
+  interface Definition {
+    partOfSpeech: string;
+    text: string;
+  }
+
   return (
     <div>
     { loading ? <h3>Loading ...</h3> : '' }      
