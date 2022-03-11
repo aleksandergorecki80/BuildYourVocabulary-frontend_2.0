@@ -2,28 +2,37 @@ import { useState, useEffect } from 'react';
 import { useTypedSelector } from '../hooks/useTypedSelector';
 import { useDefinitionsActions } from '../hooks/useDefinitionsActions';
 
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import Container from '@mui/material/Container';
+
 const LoadDefinitions: React.FC = () => {
   const [showButton, setShowButton] = useState(true);
   const { fetchDefinitions } = useDefinitionsActions();
 
-  const { data } = useTypedSelector((state) => state.definitions);
+  const { data, loading } = useTypedSelector((state) => state.definitions);
 
   useEffect(() => {
-    data.length > 0 ? setShowButton(false) : setShowButton(true);
-  }, [data]);
+    data.length > 0 || loading ? setShowButton(false) : setShowButton(true);
+  }, [data, loading]);
 
   const onLoadDefinitions = () => {
     fetchDefinitions();
   };
 
   const loadingDiv = (
-    <div>
-      <p>
+    <Container>
+      <Typography variant="h3" component="h3" gutterBottom>
+        Build Your Vocabulary
+      </Typography>
+      <Typography variant="body1" gutterBottom>
         Press the button to load random definition and try to guess the word it
         describes.
-      </p>
-      <button onClick={onLoadDefinitions}>Load</button>
-    </div>
+      </Typography>
+      <Button variant="contained" onClick={onLoadDefinitions}>
+        Load
+      </Button>
+    </Container>
   );
 
   return <div>{showButton ? loadingDiv : null}</div>;

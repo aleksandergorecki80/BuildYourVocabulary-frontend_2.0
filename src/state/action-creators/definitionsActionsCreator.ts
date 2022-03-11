@@ -19,7 +19,7 @@ export const fetchDefinitions = () => {
             const result = await axios.get('/api/v1/words');
 
             const payload = result.data.data.map((dataSet: any) => {
-                return {
+                return  {
                     partOfSpeech: dataSet.partOfSpeech,
                     word: dataSet.word,
                     text: dataSet.text

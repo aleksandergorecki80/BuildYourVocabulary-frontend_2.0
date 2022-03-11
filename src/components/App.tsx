@@ -12,7 +12,6 @@ const App = () => {
   return (
     <Provider store={store}>
       <div className="App">
-        <h3>Build Your Vocabulary</h3>
         <LoadDefinitions />
         <Definitions />
         <Answering />
