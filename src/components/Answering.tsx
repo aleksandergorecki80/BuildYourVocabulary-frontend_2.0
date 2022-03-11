@@ -1,17 +1,12 @@
 import AnswerForm from './AnswerForm';
-import ShowLetter from './ShowLetter';
-import ShowAnswer from './ShowAnswer';
-import Answer from './Answer';
-
+import ShowLetterAnswer from './ShowLetterAnswer';
 import Container from '@mui/material/Container';
 
 const Answering: React.FC = () => {
   return (
     <Container>
       <AnswerForm />
-      <ShowLetter />
-      <ShowAnswer />
-      <Answer />
+      <ShowLetterAnswer />
     </Container>
   );
 };

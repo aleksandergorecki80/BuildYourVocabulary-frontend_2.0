@@ -2,7 +2,9 @@
   text-align: center;
 }
 
-
+.margin {
+  margin: 12px 0 12px 0;
+}
 
 .pointer {
   cursor: pointer;

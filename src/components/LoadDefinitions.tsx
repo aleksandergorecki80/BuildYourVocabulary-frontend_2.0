@@ -29,8 +29,16 @@ const LoadDefinitions: React.FC = () => {
         Press the button to load random definition and try to guess the word it
         describes.
       </Typography>
-      <Button variant="contained" onClick={onLoadDefinitions}>
-        Load
+      <Button
+        variant="outlined"
+        size="large"
+        onClick={onLoadDefinitions}
+        fullWidth
+        sx={{ 
+          fontSize: 26 
+        }}
+      >
+        Load definitions
       </Button>
     </Container>
   );

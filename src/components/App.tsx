@@ -7,14 +7,16 @@ import { store } from '../state';
 import LoadDefinitions from './LoadDefinitions';
 import Definitions from './Definitions';
 import Answering from './Answering';
+import Answer from './Answer';
 
 const App = () => {
   return (
     <Provider store={store}>
       <div className="App">
         <LoadDefinitions />
-        <Definitions />
         <Answering />
+        <Answer />
+        <Definitions />
       </div>
     </Provider>
   );
