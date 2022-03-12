@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useTypedSelector } from '../hooks/useTypedSelector';
 import Definition from './Definition';
 
@@ -9,8 +9,7 @@ import Typography from '@mui/material/Typography';
 
 const Definitions: React.FC = () => {
   const [quantity, setQuantity] = useState(0);
-  const [filteredResult, setFilteredResult] = useState<{}[]>([]);
-
+  
   const { data, loading, error } = useTypedSelector(
     (state) => state.definitions
   );
@@ -19,21 +18,12 @@ const Definitions: React.FC = () => {
     setQuantity((prevState) => prevState + 1);
   }
 
-  useEffect(() => {
-    const result = data.filter((element: any) => {
-      return element.text && element.partOfSpeech;
-    });
-    setFilteredResult(result);
-  }, [data]);
 
   interface Definition {
     partOfSpeech: string;
     text: string;
   }
 
-
-  console.log(quantity)
-  console.log(filteredResult.length)
 
   return (
     <Container>
@@ -44,8 +34,8 @@ const Definitions: React.FC = () => {
       )}
       {error ? <h3>{error}</h3> : ''}
 
-      {filteredResult &&
-        filteredResult.map((definition: any, index) => {
+      {data &&
+        data.map((definition: any, index) => {
           return definition.text &&
             definition.partOfSpeech &&
             index <= quantity ? (
@@ -56,7 +46,7 @@ const Definitions: React.FC = () => {
           ) : null;
         })}
 
-      { (filteredResult.length > 0 && filteredResult.length > quantity) ? <>
+      { (data.length > 0 && data.length > quantity) ? <>
           <Typography variant="overline" display="block" >
           Load next definition
         </Typography>

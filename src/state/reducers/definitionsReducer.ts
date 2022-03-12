@@ -1,5 +1,5 @@
 import { ActionTypes } from '../action-types/actionTypes';
-import { SearchActions } from '../action-interfaces/actionInterfaces';
+import { SearchActions } from '../action-interfaces/searchActionInterfaces';
 
 interface DefinitionsState {
   loading: boolean;
