@@ -7,7 +7,6 @@ import { store } from '../state';
 import LoadDefinitions from './LoadDefinitions';
 import Definitions from './Definitions';
 import Answering from './Answering';
-import Answer from './Answer';
 
 const App = () => {
   return (
@@ -15,7 +14,6 @@ const App = () => {
       <div className="App">
         <LoadDefinitions />
         <Answering />
-        <Answer />
         <Definitions />
       </div>
     </Provider>

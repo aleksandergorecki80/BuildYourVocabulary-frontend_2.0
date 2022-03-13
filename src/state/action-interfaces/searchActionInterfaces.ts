@@ -1,4 +1,5 @@
 import { ActionTypes } from '../action-types/actionTypes';
+import { SetWordSuccess } from './appActionInterfaces';
 
 interface SearchDefinitions {
   type: ActionTypes.SERCH_DEFINITIONS;
@@ -8,7 +9,6 @@ interface SearchDefinitionsSuccess {
   type: ActionTypes.SERCH_DEFINITIONS_SUCCESS;
   payload: {
     partOfSpeech: string;
-    word: string;
     text: string;
   }[];
 }
@@ -18,7 +18,10 @@ interface SearchDefinitionsError {
   payload: string;
 }
 
+
+
 export type SearchActions =
   | SearchDefinitions
   | SearchDefinitionsSuccess
-  | SearchDefinitionsError;
+  | SearchDefinitionsError
+  | SetWordSuccess;

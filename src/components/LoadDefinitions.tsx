@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useTypedSelector } from '../hooks/useTypedSelector';
-import { useDefinitionsActions } from '../hooks/useDefinitionsActions';
+import { useDefinitionsActions } from '../hooks/useActions';
 
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';

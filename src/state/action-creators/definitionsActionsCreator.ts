@@ -2,13 +2,8 @@ import axios from "axios";
 import { Dispatch } from "react";
 import { ActionTypes } from "../action-types/actionTypes";
 import { SearchActions } from "../action-interfaces/searchActionInterfaces";
+import { Payload } from "../interfaces/interfaces";
 
-
-interface Payload {
-    partOfSpeech: string;
-    word: string;
-    text: string;
-}
 
 export const fetchDefinitions = () => {
     return async (dispatch: Dispatch<SearchActions>) => {
@@ -25,14 +20,19 @@ export const fetchDefinitions = () => {
             const payload = filteredResult.map((dataSet: Payload) => {
                 return  {
                     partOfSpeech: dataSet.partOfSpeech,
-                    word: dataSet.word,
                     text: dataSet.text
                 }
             });
 
+
             dispatch({
                 type: ActionTypes.SERCH_DEFINITIONS_SUCCESS,
                 payload: payload
+            })
+
+            dispatch({
+                type: ActionTypes.SET_WORD_SUCCESS,
+                payload: filteredResult[0].word
             })
 
         } catch (err: any ) {
