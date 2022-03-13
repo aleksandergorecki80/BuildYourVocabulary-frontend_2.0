@@ -7,11 +7,14 @@ import { store } from '../state';
 import LoadDefinitions from './LoadDefinitions';
 import Definitions from './Definitions';
 import Answering from './Answering';
+import Header from './Header';
+
 
 const App = () => {
   return (
     <Provider store={store}>
       <div className="App">
+        <Header />
         <LoadDefinitions />
         <Answering />
         <Definitions />

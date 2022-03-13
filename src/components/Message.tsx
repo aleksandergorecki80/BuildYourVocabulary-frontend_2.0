@@ -1,30 +1,10 @@
 import * as React from 'react';
-import { Box, ThemeProvider, createTheme } from '@mui/system';
+import { Box, ThemeProvider } from '@mui/system';
 import CheckCircleOutlineRoundedIcon from '@mui/icons-material/CheckCircleOutlineRounded';
 import HighlightOffRoundedIcon from '@mui/icons-material/HighlightOffRounded';
 import { Container } from '@mui/material';
 
-const theme = createTheme({
-  palette: {
-    background: {
-      paper: '#fff',
-    },
-    text: {
-      primary: '#173A5E',
-      secondary: '#46505A',
-    },
-    action: {
-      active: '#001E3C',
-    },
-    success: {
-      dark: '#009688',
-      green: '#37b24d',
-    },
-    error: {
-      red: '#f03e3e',
-    },
-  },
-});
+import { theme } from '../utils/theme';
 
 interface CildProps {
     answerCorrect: boolean;

@@ -6,6 +6,7 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 
+
 const LoadDefinitions: React.FC = () => {
   const [showButton, setShowButton] = useState(true);
   const { fetchDefinitions } = useDefinitionsActions();
@@ -22,12 +23,9 @@ const LoadDefinitions: React.FC = () => {
 
   const loadingDiv = (
     <Container>
-      <Typography variant="h3" component="h3" gutterBottom>
-        Build Your Vocabulary
-      </Typography>
       <Typography variant="body1" gutterBottom>
-        Press the button to load random definition and try to guess the word it
-        describes.
+        Press the button to load random definitions and try to guess the word they
+        describe.
       </Typography>
       <Button
         variant="outlined"
