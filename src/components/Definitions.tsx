@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useTypedSelector } from '../hooks/useTypedSelector';
 import Definition from './Definition';
 
@@ -14,14 +14,14 @@ const Definitions: React.FC = () => {
     (state) => state.definitions
   );
 
+  useEffect(() => {
+    if(data.length === 0) {
+      setQuantity(0);
+    }
+  }, [ data ])
+
   const onClickHandler = () => {
     setQuantity((prevState) => prevState + 1);
-  }
-
-
-  interface Definition {
-    partOfSpeech: string;
-    text: string;
   }
 
 

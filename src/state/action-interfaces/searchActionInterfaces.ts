@@ -18,10 +18,15 @@ interface SearchDefinitionsError {
   payload: string;
 }
 
+export interface ResetDefinitions {
+  type: ActionTypes.RESET_DEFINITIONS
+}
+
 
 
 export type SearchActions =
   | SearchDefinitions
   | SearchDefinitionsSuccess
   | SearchDefinitionsError
-  | SetWordSuccess;
+  | SetWordSuccess
+  | ResetDefinitions;

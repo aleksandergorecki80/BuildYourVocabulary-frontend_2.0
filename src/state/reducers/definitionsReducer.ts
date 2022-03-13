@@ -39,6 +39,13 @@ const definitionsReducer = (
         data: [],
       };
 
+    case ActionTypes.RESET_DEFINITIONS:
+      return {
+        loading: false,
+        error: null,
+        data: [],
+      }
+
     default:
       return state;
   }

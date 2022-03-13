@@ -1,4 +1,5 @@
 import { ActionTypes } from '../action-types/actionTypes';
+import { ResetDefinitions } from './searchActionInterfaces';
 
 interface AnsweringSuccess {
   type: ActionTypes.ANWERING_SUCCESS;
@@ -16,6 +17,10 @@ interface ClearMessage {
   type: ActionTypes.CLEAR_MESSAGE
 }
 
+interface ResetApp {
+  type: ActionTypes.RESET_APP
+}
+
 export interface SetWordSuccess {
   type: ActionTypes.SET_WORD_SUCCESS;
   payload: string;
@@ -26,4 +31,7 @@ export type AppActions =
   | AnsweringFalse
   | ClearMessage
   | ShowAnswer
-  | SetWordSuccess;
+  | SetWordSuccess
+  | ResetDefinitions
+  | ResetApp
+  ;

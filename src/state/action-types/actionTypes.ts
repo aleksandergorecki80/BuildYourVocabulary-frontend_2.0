@@ -7,4 +7,6 @@ export enum ActionTypes {
     SHOW_ANSWER = 'show_answer',
     SET_WORD_SUCCESS = 'set_word_success',
     CLEAR_MESSAGE = 'clear_message',
+    RESET_DEFINITIONS = 'reset_definitions',
+    RESET_APP = 'reset_app',
   }

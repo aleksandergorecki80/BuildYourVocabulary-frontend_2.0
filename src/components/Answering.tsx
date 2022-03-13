@@ -2,7 +2,6 @@ import { useTypedSelector } from '../hooks/useTypedSelector';
 import { Box } from '@mui/material';
 
 import AnswerForm from './AnswerForm';
-import ShowLetterAnswer from './ShowLetterAnswer';
 import Container from '@mui/material/Container';
 
 const Answering: React.FC = () => {
@@ -19,7 +18,6 @@ const Answering: React.FC = () => {
       {data.length > 0 && !loading ? (
         <Box>
           <AnswerForm />
-          <ShowLetterAnswer />
         </Box>
       ) : (
         ''
