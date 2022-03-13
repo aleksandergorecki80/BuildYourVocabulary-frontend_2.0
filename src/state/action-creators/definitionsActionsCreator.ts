@@ -4,7 +4,6 @@ import { ActionTypes } from "../action-types/actionTypes";
 import { SearchActions } from "../action-interfaces/searchActionInterfaces";
 import { Payload } from "../interfaces/interfaces";
 
-
 export const fetchDefinitions = () => {
     return async (dispatch: Dispatch<SearchActions>) => {
         dispatch(

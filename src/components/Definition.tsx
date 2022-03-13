@@ -11,19 +11,17 @@ interface ChildProps {
 }
 
 const Definition: React.FC<ChildProps> = (props) => {
-
-  const parser = new DOMParser();
-  const parsedText = parser.parseFromString(props.definition.text, "text/html");
-  console.log(parsedText)
-
-  return (
+  
+  const strippedHtmlText = props.definition.text.replace(/<[^>]+>/g, '');
+  
+    return (
       <Box className='margin' sx={{ minWidth: 275 }}>
         <Card variant="outlined">
           <CardContent>
             <Typography sx={{ mb: 1.5 }} color="text.secondary">
               {props.definition.partOfSpeech}
             </Typography>
-            <Typography variant="body2">{parsedText}</Typography>
+            <Typography variant="body2">{strippedHtmlText}</Typography>
           </CardContent>
         </Card>
       </Box>
