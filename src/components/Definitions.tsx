@@ -5,7 +5,7 @@ import Definition from './Definition';
 import Container from '@mui/material/Container';
 import HourglassBottomOutlinedIcon from '@mui/icons-material/HourglassBottomOutlined';
 import KeyboardDoubleArrowDownIcon from '@mui/icons-material/KeyboardDoubleArrowDown';
-import Typography from '@mui/material/Typography';
+import { Button } from '@mui/material';
 
 const Definitions: React.FC = () => {
   const [quantity, setQuantity] = useState(0);
@@ -46,11 +46,14 @@ const Definitions: React.FC = () => {
           ) : null;
         })}
 
-      { (data.length > 0 && data.length > quantity) ? <>
-          <Typography variant="overline" display="block" >
-          Load next definition
-        </Typography>
-        <KeyboardDoubleArrowDownIcon onClick={onClickHandler} className="pointer" /> </>: ''}
+      { (data.length > 0 && data.length > quantity) ? <>      
+        <Button 
+        onClick={onClickHandler} 
+        size="small"
+        startIcon={<KeyboardDoubleArrowDownIcon  /> }
+        endIcon={<KeyboardDoubleArrowDownIcon  /> }
+        >Load next definition</Button>
+        </>: ''}
     </Container>
   );
 };

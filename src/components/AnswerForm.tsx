@@ -24,9 +24,9 @@ const AnswerForm: React.FC = () => {
   });
 
   const onShowLetter = () => {
-    const result = word.slice(showIndex, showIndex + 1);
+    const result = word.slice(0, showIndex + 1);
     setShowIndex((prevState) => prevState + 1);
-    result && setTerm(`${term}${result}`);
+    result && setTerm(result);
   };
 
   const onShowAnswer = () => {
@@ -66,7 +66,6 @@ const AnswerForm: React.FC = () => {
               display: 'flex',
               justifyContent: 'space-evenly',
             }}
-            className="margin"
           >
             <Button
               onClick={onShowLetter}

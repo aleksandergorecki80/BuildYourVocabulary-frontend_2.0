@@ -9,15 +9,16 @@ import Definitions from './Definitions';
 import Answering from './Answering';
 import Header from './Header';
 
-
 const App = () => {
   return (
     <Provider store={store}>
       <div className="App">
+
         <Header />
         <LoadDefinitions />
-        <Answering />
         <Definitions />
+        <Answering />
+
       </div>
     </Provider>
   );

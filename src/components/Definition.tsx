@@ -15,7 +15,7 @@ const Definition: React.FC<ChildProps> = (props) => {
   const strippedHtmlText = props.definition.text.replace(/<[^>]+>/g, '');
   
     return (
-      <Box className='margin' sx={{ minWidth: 275 }}>
+      <Box sx={{ minWidth: 275 }}>
         <Card variant="outlined">
           <CardContent>
             <Typography sx={{ mb: 1.5 }} color="text.secondary">

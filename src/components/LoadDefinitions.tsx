@@ -4,8 +4,7 @@ import { useDefinitionsActions } from '../hooks/useActions';
 
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import Container from '@mui/material/Container';
-
+import { Box } from '@mui/material';
 
 const LoadDefinitions: React.FC = () => {
   const [showButton, setShowButton] = useState(true);
@@ -21,27 +20,38 @@ const LoadDefinitions: React.FC = () => {
     fetchDefinitions();
   };
 
+  const messageForNotLoadedData = (
+    <Typography variant="body1" gutterBottom>
+      Press the button to load random definitions and try to guess the word they
+      describe.
+    </Typography>
+  );
+
+  const messageForLoadedData = (
+    <Typography variant="body1" gutterBottom>
+      Reade the definitions and try to gess the meaning.
+      Type your answet below.
+    </Typography>
+  );
+
   const loadingDiv = (
-    <Container>
-      <Typography variant="body1" gutterBottom>
-        Press the button to load random definitions and try to guess the word they
-        describe.
-      </Typography>
       <Button
         variant="outlined"
         size="large"
         onClick={onLoadDefinitions}
         fullWidth
-        sx={{ 
-          fontSize: 26 
+        sx={{
+          fontSize: 26,
         }}
       >
         Load definitions
       </Button>
-    </Container>
   );
 
-  return <div>{showButton ? loadingDiv : null}</div>;
+  return <Box>
+    { data.length === 0 ? messageForNotLoadedData : messageForLoadedData}
+    {showButton ? loadingDiv : null}
+    </Box>;
 };
 
 export default LoadDefinitions;
