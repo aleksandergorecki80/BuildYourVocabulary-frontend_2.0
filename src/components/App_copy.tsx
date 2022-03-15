@@ -1,5 +1,5 @@
+import React from 'react';
 import '../styles/App.css';
-import * as React from 'react';
 
 import { Provider } from 'react-redux';
 import { store } from '../state';
@@ -8,24 +8,18 @@ import LoadDefinitions from './LoadDefinitions';
 import Definitions from './Definitions';
 import Answering from './Answering';
 import Header from './Header';
-import { Box } from '@mui/system';
-
-import { Root } from '../utils/Root';
-
-
+import MediaQuery from './MediaQuery';
+// import { Box } from '@mui/system';
 
 const App = () => {
   return (
     <Provider store={store}>
       <div className="App">
-        <Root sx={{ m: 1, p: 1 }}>
-          <Box>
-            <Header />
-            <LoadDefinitions />
-            <Definitions />
-            <Answering />
-          </Box>
-        </Root>
+          <Header />
+          <MediaQuery />
+          <LoadDefinitions />
+          <Definitions />
+          <Answering />
       </div>
     </Provider>
   );
