@@ -8,6 +8,7 @@ import FormGroup from '@mui/material/FormGroup';
 import Button from '@mui/material/Button';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import { Box } from '@mui/material';
+import ButtonGroup from '@mui/material/ButtonGroup';
 
 const AnswerForm: React.FC = () => {
   const [term, setTerm] = useState('');
@@ -47,7 +48,7 @@ const AnswerForm: React.FC = () => {
             label="Type your answer here"
             variant="filled"
             value={term}
-            onChange={(event) => setTerm(event.target.value)}
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) => setTerm(event.target.value)}
           />
           {showMessage ? <Message answerCorrect={answerCorrect} /> : ''}
 
@@ -61,12 +62,14 @@ const AnswerForm: React.FC = () => {
           >
             Submit answer
           </Button>
-          <Box
+          {/* <Box
             sx={{
               display: 'flex',
               justifyContent: 'space-evenly',
             }}
-          >
+          > */}
+
+<ButtonGroup variant="contained" aria-label="outlined primary button group">
             <Button
               onClick={onShowLetter}
               variant="contained"
@@ -83,7 +86,9 @@ const AnswerForm: React.FC = () => {
             >
               Show an answer
             </Button>
-          </Box>
+            </ButtonGroup>
+
+          {/* </Box> */}
         </FormGroup>
       ) : (
         ''
