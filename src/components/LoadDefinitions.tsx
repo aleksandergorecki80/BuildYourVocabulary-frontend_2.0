@@ -57,10 +57,10 @@ const LoadDefinitions: React.FC = () => {
         </RadioGroup>
       </FormControl>
       <Button
-        variant="outlined"
+        variant="contained"
         size="large"
         onClick={onLoadDefinitions}
-        fullWidth
+        
         sx={{
           fontSize: 26,
         }}

@@ -1,10 +1,8 @@
 import * as React from 'react';
-import { Box, ThemeProvider } from '@mui/system';
+import { Box } from '@mui/system';
 import CheckCircleOutlineRoundedIcon from '@mui/icons-material/CheckCircleOutlineRounded';
 import HighlightOffRoundedIcon from '@mui/icons-material/HighlightOffRounded';
 import { Container } from '@mui/material';
-
-import { theme } from '../utils/theme';
 
 interface CildProps {
     answerCorrect: boolean;
@@ -42,9 +40,9 @@ const answerIsWrong = (
 
 export const Message: React.FC<CildProps> = (props) => {
   return (
-    <ThemeProvider theme={theme}>
+    <>
       {props.answerCorrect ? answerIsCorrect : answerIsWrong}
-    </ThemeProvider>
+    </>
   );
 };
 

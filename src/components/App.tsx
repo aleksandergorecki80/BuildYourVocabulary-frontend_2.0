@@ -8,26 +8,33 @@ import LoadDefinitions from './LoadDefinitions';
 import Definitions from './Definitions';
 import Answering from './Answering';
 import Header from './Header';
+
+import BrandButton from './BrandButtons';
+
+import { ThemeProvider } from '@mui/material';
+import theme from '../utils/theme';
+
 import { Box } from '@mui/system';
-
 import { Root } from '../utils/Root';
-
-
 
 const App = () => {
   return (
-    <Provider store={store}>
-      <div className="App">
-        <Root sx={{ m: 1, p: 1 }}>
-          <Box>
-            <Header />
-            <LoadDefinitions />
-            <Definitions />
-            <Answering />
-          </Box>
-        </Root>
-      </div>
-    </Provider>
+    <ThemeProvider theme={theme}>
+      <Provider store={store}>
+        <div className="App">
+          <Root sx={{ m: 1, p: 1 }}>
+            <Box>
+              <BrandButton color="primary">One</BrandButton>
+              <BrandButton color="secondary">Two</BrandButton>
+              <Header />
+              <LoadDefinitions />
+              <Definitions />
+              <Answering />
+            </Box>
+          </Root>
+        </div>
+      </Provider>
+    </ThemeProvider>
   );
 };
 

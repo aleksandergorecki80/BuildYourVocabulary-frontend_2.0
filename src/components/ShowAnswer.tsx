@@ -1,7 +1,6 @@
 import React from 'react';
 import { useTypedSelector } from '../hooks/useTypedSelector';
-import { theme } from '../utils/theme';
-import { Box, ThemeProvider } from '@mui/material';
+import { Box } from '@mui/material';
 import Button from '@mui/material/Button';
 
 import { useAppActions } from '../hooks/useActions';
@@ -16,7 +15,7 @@ const ShowAnswer: React.FC = () => {
 
   return (
     <Box>
-      <ThemeProvider theme={theme}>
+
         <Box>
           <Box
             sx={{ color: 'text.primary', fontSize: 16, fontWeight: 'medium' }}
@@ -29,7 +28,7 @@ const ShowAnswer: React.FC = () => {
             {word}
           </Box>
         </Box>
-      </ThemeProvider>
+
       <Button 
       onClick={onResetGame}
       variant="contained" color="primary">
