@@ -12,7 +12,7 @@ export const Root = styled('div')(({ theme }) => ({
       // backgroundColor: purple[500],
     },
     [theme.breakpoints.up('md')]: {
-      width: '75%',
+      width: '60%',
       // backgroundColor: blue[500],
     },
     [theme.breakpoints.up('lg')]: {

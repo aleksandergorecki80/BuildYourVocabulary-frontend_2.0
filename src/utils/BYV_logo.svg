@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Generator: Adobe Illustrator 15.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="120px"
-	 height="120px" viewBox="21.375 19.443 120 120" enable-background="new 21.375 19.443 120 120" xml:space="preserve">
+<svg version="1.1" id="Warstwa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="120px" height="120px" viewBox="0 0 120 120" enable-background="new 0 0 120 120" xml:space="preserve">
 <g id="Warstwa_2" display="none">
-	<rect x="21.25" y="19.565" display="inline" fill="#FFFFFF" stroke="#1D1D1B" stroke-miterlimit="10" width="120" height="120"/>
+	<rect y="0" display="inline" fill="#FFFFFF" stroke="#1D1D1B" stroke-miterlimit="10" width="120" height="120"/>
 </g>
-<g id="Warstwa_1">
+<g id="Warstwa_1_1_">
 	<g>
-		<path fill="#02805C" d="M70.252,38.147H29.055c-3.827,0-6.931,3.103-6.931,6.931v39.463H70.25V38.147H70.252z"/>
-		<path fill="#02805C" d="M70.252,137.287H29.055c-3.828,0-6.931-3.104-6.931-6.93V90.893l48.126,0.002v46.392H70.252z"/>
-		<path fill="#02805C" d="M76.412,137.287h41.195c3.827,0,6.931-3.104,6.931-6.93V90.893H76.412V137.287z"/>
-		<path fill="#D94814" d="M109.216,21.844l29.131,29.13c2.706,2.707,2.706,7.095,0,9.8l-27.905,27.905l-34.029-34.03L109.216,21.844
-			z"/>
+		<path fill="#099268" d="M49.002,18.582H7.805c-3.827,0-6.931,3.103-6.931,6.931v39.463H49V18.582H49.002z"/>
+		<path fill="#099268" d="M49.002,117.722H7.805c-3.828,0-6.931-3.104-6.931-6.93V71.327L49,71.329v46.393H49.002z"/>
+		<path fill="#099268" d="M55.162,117.722h41.195c3.826,0,6.931-3.104,6.931-6.93V71.327H55.162V117.722z"/>
+		<path fill="#F43131" d="M87.966,2.278l29.132,29.13c2.705,2.707,2.705,7.096,0,9.8L89.191,69.114l-34.028-34.03L87.966,2.278z"/>
 	</g>
 </g>
 </svg>

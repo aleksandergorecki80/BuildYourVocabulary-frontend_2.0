@@ -4,7 +4,7 @@ import { useDefinitionsActions } from '../hooks/useActions';
 
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import { Box } from '@mui/material';
+import Grid from '@mui/material/Grid';
 
 // Radio
 import Radio from '@mui/material/Radio';
@@ -30,7 +30,7 @@ const LoadDefinitions: React.FC = () => {
 
   const messageForNotLoadedData = (
     <Typography variant="body1" gutterBottom>
-      Press the button to load random definitions and try to guess the word they
+      Load random definitions and try to guess the word they
       describe.
     </Typography>
   );
@@ -42,39 +42,54 @@ const LoadDefinitions: React.FC = () => {
   );
 
   const loadingDiv = (
-    <Box>
-      <FormControl>
-        <RadioGroup
-          row
-          aria-labelledby="demo-row-radio-buttons-group-label"
-          name="row-radio-buttons-group"
-          value={level}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => setLevel(e.target.value)}
+    <Grid container spacing={2}>
+      <Grid item xs={12}>
+        <FormControl>
+          <RadioGroup
+            row
+            aria-labelledby="demo-row-radio-buttons-group-label"
+            name="row-radio-buttons-group"
+            value={level}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              setLevel(e.target.value)
+            }
+          >
+            <FormControlLabel value="easy" control={<Radio />} label="Easy" />
+            <FormControlLabel
+              value="medium"
+              control={<Radio />}
+              label="Medium"
+            />
+            <FormControlLabel value="hard" control={<Radio />} label="Hard" />
+          </RadioGroup>
+        </FormControl>
+      </Grid>
+      <Grid item xs={12}>
+        <Button
+          variant="contained"
+          size="large"
+          onClick={onLoadDefinitions}
+          sx={{
+            fontSize: 18,
+            textTransform: 'uppercase',
+            padding: '24px 48px',
+          }}
         >
-          <FormControlLabel value="easy" control={<Radio />} label="Easy" />
-          <FormControlLabel value="medium" control={<Radio />} label="Medium" />
-          <FormControlLabel value="hard" control={<Radio />} label="Hard" />
-        </RadioGroup>
-      </FormControl>
-      <Button
-        variant="contained"
-        size="large"
-        onClick={onLoadDefinitions}
-        
-        sx={{
-          fontSize: 26,
-        }}
-      >
-        Load definitions
-      </Button>
-    </Box>
+          Load definitions
+        </Button>
+      </Grid>
+    </Grid>
   );
 
   return (
-    <Box>
-      {data.length === 0 ? messageForNotLoadedData : messageForLoadedData}
-      {showButton ? loadingDiv : null}
-    </Box>
+    <Grid container spacing={2}>
+      <Grid item xs={12}>
+        {data.length === 0 ? messageForNotLoadedData : messageForLoadedData}
+      </Grid>
+      <Grid item xs={12}>
+        {showButton ? loadingDiv : null}
+      </Grid>
+    </Grid>
   );
 };
 

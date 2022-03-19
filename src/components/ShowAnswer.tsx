@@ -18,12 +18,12 @@ const ShowAnswer: React.FC = () => {
 
         <Box>
           <Box
-            sx={{ color: 'text.primary', fontSize: 16, fontWeight: 'medium' }}
+            sx={{ color: 'primary.text', fontSize: 16, fontWeight: 'medium' }}
           >
             The answer is:
           </Box>
           <Box
-            sx={{ color: 'success.green', fontSize: 34, fontWeight: 'medium' }}
+            sx={{ color: 'primary.answerText', fontSize: 34, fontWeight: 'medium' }}
           >
             {word}
           </Box>

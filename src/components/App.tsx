@@ -9,13 +9,11 @@ import Definitions from './Definitions';
 import Answering from './Answering';
 import Header from './Header';
 
-import BrandButton from './BrandButtons';
-
 import { ThemeProvider } from '@mui/material';
 import theme from '../utils/theme';
-
-import { Box } from '@mui/system';
 import { Root } from '../utils/Root';
+import Grid from '@mui/material/Grid';
+import Container from '@mui/material/Container';
 
 const App = () => {
   return (
@@ -23,14 +21,25 @@ const App = () => {
       <Provider store={store}>
         <div className="App">
           <Root sx={{ m: 1, p: 1 }}>
-            <Box>
-              <BrandButton color="primary">One</BrandButton>
-              <BrandButton color="secondary">Two</BrandButton>
-              <Header />
-              <LoadDefinitions />
-              <Definitions />
-              <Answering />
-            </Box>
+          <Container maxWidth="sm" sx={{
+            display: 'flex',
+            flexDirection: 'column',
+          }}>
+            <Grid container spacing={4}>
+              <Grid item xs={12}>
+                <Header />
+              </Grid>
+              <Grid item xs={12}>
+                <LoadDefinitions />
+              </Grid>
+              <Grid item xs={12}>
+                <Definitions />
+              </Grid>
+              <Grid item xs={12}>
+                <Answering />
+              </Grid>
+            </Grid>
+            </Container>
           </Root>
         </div>
       </Provider>

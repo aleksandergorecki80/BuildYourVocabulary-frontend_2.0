@@ -9,7 +9,7 @@ const Header: React.FC = () => {
       <Logo />
       <Box 
       sx={{
-        color: 'text.secondary',
+        color: '#495057',
         fontSize: 26, 
         fontWeight: 'bold'
       }}

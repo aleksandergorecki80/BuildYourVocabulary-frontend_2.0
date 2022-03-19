@@ -2,33 +2,34 @@ import { useEffect, useState } from 'react';
 import { useTypedSelector } from '../hooks/useTypedSelector';
 import Definition from './Definition';
 
-import Container from '@mui/material/Container';
-import HourglassBottomOutlinedIcon from '@mui/icons-material/HourglassBottomOutlined';
+import Grid from '@mui/material/Grid';
 import KeyboardDoubleArrowDownIcon from '@mui/icons-material/KeyboardDoubleArrowDown';
 import { Button } from '@mui/material';
+import CircularProgress from '@mui/material/CircularProgress';
 
 const Definitions: React.FC = () => {
   const [quantity, setQuantity] = useState(0);
-  
+
   const { data, loading, error } = useTypedSelector(
     (state) => state.definitions
   );
 
   useEffect(() => {
-    if(data.length === 0) {
+    if (data.length === 0) {
       setQuantity(0);
     }
-  }, [ data ])
+  }, [data]);
 
   const onClickHandler = () => {
     setQuantity((prevState) => prevState + 1);
-  }
-
+  };
 
   return (
-    <Container>
+    <Grid container spacing={2}>
       {loading ? (
-        <HourglassBottomOutlinedIcon color="primary" sx={{ fontSize: 60 }} />
+        <Grid item xs={12}>
+          <CircularProgress color="primary" sx={{ fontSize: 60 }} />
+        </Grid>
       ) : (
         ''
       )}
@@ -39,22 +40,27 @@ const Definitions: React.FC = () => {
           return definition.text &&
             definition.partOfSpeech &&
             index <= quantity ? (
-            <Definition
-              definition={definition}
-              key={index}
-            />
+            <Definition definition={definition} key={index} />
           ) : null;
         })}
 
-      { (data.length > 0 && data.length > quantity) ? <>      
-        <Button 
-        onClick={onClickHandler} 
-        size="small"
-        startIcon={<KeyboardDoubleArrowDownIcon  /> }
-        endIcon={<KeyboardDoubleArrowDownIcon  /> }
-        >Load next definition</Button>
-        </>: ''}
-    </Container>
+      {data.length > 0 && data.length > quantity ? (
+        <>
+          <Grid item xs={12}>
+            <Button
+              onClick={onClickHandler}
+              size="small"
+              startIcon={<KeyboardDoubleArrowDownIcon />}
+              endIcon={<KeyboardDoubleArrowDownIcon />}
+            >
+              Load next definition
+            </Button>
+          </Grid>
+        </>
+      ) : (
+        ''
+      )}
+    </Grid>
   );
 };
 
