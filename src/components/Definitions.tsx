@@ -25,7 +25,7 @@ const Definitions: React.FC = () => {
   };
 
   return (
-    <Grid container spacing={2}>
+    <Grid container rowSpacing={1}>
       {loading ? (
         <Grid item xs={12}>
           <CircularProgress color="primary" sx={{ fontSize: 60 }} />

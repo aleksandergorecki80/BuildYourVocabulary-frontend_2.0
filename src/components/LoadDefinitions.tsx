@@ -42,7 +42,7 @@ const LoadDefinitions: React.FC = () => {
   );
 
   const loadingDiv = (
-    <Grid container spacing={2}>
+    <Grid container>
       <Grid item xs={12}>
         <FormControl>
           <RadioGroup
@@ -82,7 +82,7 @@ const LoadDefinitions: React.FC = () => {
   );
 
   return (
-    <Grid container spacing={2}>
+    <Grid container>
       <Grid item xs={12}>
         {data.length === 0 ? messageForNotLoadedData : messageForLoadedData}
       </Grid>

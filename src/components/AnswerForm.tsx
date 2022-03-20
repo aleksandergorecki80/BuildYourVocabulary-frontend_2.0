@@ -7,7 +7,7 @@ import TextField from '@mui/material/TextField';
 import FormGroup from '@mui/material/FormGroup';
 import Button from '@mui/material/Button';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
-import { Box } from '@mui/material';
+import Grid from '@mui/material/Grid';
 import ButtonGroup from '@mui/material/ButtonGroup';
 
 const AnswerForm: React.FC = () => {
@@ -39,62 +39,80 @@ const AnswerForm: React.FC = () => {
   };
 
   return (
-    <Box>
+    <>
       {!isAnswerShown ? (
-        <FormGroup>
-          <TextField
-            fullWidth
-            id="filled-basic"
-            label="Type your answer here"
-            variant="filled"
-            value={term}
-            onChange={(event: React.ChangeEvent<HTMLInputElement>) => setTerm(event.target.value)}
-          />
-          {showMessage ? <Message answerCorrect={answerCorrect} /> : ''}
+        <form>
+          <FormGroup>
+            <Grid container rowSpacing={2}>
+              <Grid item xs={12}>
+                <TextField
+                  fullWidth
+                  label="Type your answer here"
+                  variant="filled"
+                  value={term}
+                  onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+                    setTerm(event.target.value)
+                  }
+                /></Grid>
+                {showMessage ? <Grid item xs={12}><Message answerCorrect={answerCorrect} /></Grid> : ''}
 
-          <Button
-            variant="contained"
-            color="success"
-            endIcon={<KeyboardArrowRightIcon />}
-            onClick={onCheckTheAnswer}
-            disabled={showMessage}
-            fullWidth
-          >
-            Submit answer
-          </Button>
-          {/* <Box
-            sx={{
-              display: 'flex',
-              justifyContent: 'space-evenly',
-            }}
-          > */}
-
-<ButtonGroup variant="contained" aria-label="outlined primary button group">
-            <Button
-              onClick={onShowLetter}
-              variant="contained"
-              color="warning"
-              fullWidth
-            >
-              Show a letter
-            </Button>
-            <Button
-              onClick={onShowAnswer}
-              variant="contained"
-              color="error"
-              fullWidth
-            >
-              Show an answer
-            </Button>
-            </ButtonGroup>
-
-          {/* </Box> */}
-        </FormGroup>
+              <Grid item xs={12}>
+                <Button
+                  type="submit"
+                  variant="contained"
+                  color="success"
+                  endIcon={<KeyboardArrowRightIcon />}
+                  onClick={onCheckTheAnswer}
+                  disabled={showMessage}
+                  fullWidth
+                  sx={{
+                    paddingTop: 3,
+                    paddingBottom: 3,
+                  }}
+                >
+                  Submit answer
+                </Button>
+              </Grid>
+              <Grid item xs={12}>
+                <ButtonGroup
+                  variant="contained"
+                  aria-label="outlined primary button group"
+                  fullWidth
+                >
+                  <Button
+                    onClick={onShowLetter}
+                    variant="contained"
+                    color="warning"
+                    fullWidth
+                    sx={{
+                      paddingTop: 3,
+                      paddingBottom: 3,
+                    }}
+                  >
+                    Show a letter
+                  </Button>
+                  <Button
+                    onClick={onShowAnswer}
+                    variant="contained"
+                    color="error"
+                    fullWidth
+                    sx={{
+                      paddingTop: 3,
+                      paddingBottom: 3,
+                    }}
+                  >
+                    Show an answer
+                  </Button>
+                </ButtonGroup>
+              </Grid>
+            </Grid>
+          </FormGroup>
+        </form>
       ) : (
         ''
       )}
       {isAnswerShown ? <ShowAnswer /> : ''}
-    </Box>
+    </>
   );
 };
 

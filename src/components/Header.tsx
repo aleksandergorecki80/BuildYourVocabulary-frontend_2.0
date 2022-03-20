@@ -1,5 +1,5 @@
 import { Box } from '@mui/material';
-
+import { Typography } from '@mui/material';
 import { ReactComponent as Logo } from '../utils/BYV_logo.svg';
 
 const Header: React.FC = () => {
@@ -7,16 +7,15 @@ const Header: React.FC = () => {
 
     <Box>
       <Logo />
-      <Box 
-      sx={{
-        color: '#495057',
-        fontSize: 26, 
-        fontWeight: 'bold'
-      }}
-
-      >
+      <Typography variant="h2"
+        sx={{
+          color: 'text.primary',
+          fontSize: 26, 
+          fontWeight: 'bold'
+        }}
+      > 
         Build Your Vocabulary
-      </Box>
+      </Typography>
     </Box>
 
   );

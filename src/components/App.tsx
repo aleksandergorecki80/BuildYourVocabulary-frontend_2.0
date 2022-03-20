@@ -20,12 +20,10 @@ const App = () => {
     <ThemeProvider theme={theme}>
       <Provider store={store}>
         <div className="App">
-          <Root sx={{ m: 1, p: 1 }}>
-          <Container maxWidth="sm" sx={{
-            display: 'flex',
-            flexDirection: 'column',
-          }}>
-            <Grid container spacing={4}>
+          {/* <Root sx={{ m: 1, p: 1 }}> */}
+          <Root>
+          <Container>
+            <Grid container rowSpacing={1} columnSpacing={0}>
               <Grid item xs={12}>
                 <Header />
               </Grid>

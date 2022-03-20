@@ -7,13 +7,11 @@ interface PalettePrimary {
   dark?: string;
   text?: string;
   contrastText?: string;
-  answerText: string;
+  answerText?: string;
 }
 
 const palettePrimary: PalettePrimary = {
   main: '#099268',
-  text: '#000000',
-  answerText: '#d9480f',
 }
 
 const theme = createTheme({
@@ -23,7 +21,7 @@ const theme = createTheme({
       main: '#c92a2a',
     },
     text: {
-      primary: '#212529',
+      primary: '#343a40',
     }
   },
   components: {
@@ -50,7 +48,16 @@ const theme = createTheme({
         shrink: true, // The label stays small in the corner
         // color: 'secondary',
       },
+    },
+    MuiFilledInput: {
+      defaultProps: {
+        // The props to change the default for.
+        sx: {
+          paddingTop: 2,
+          paddingBottom: 2
+        }
 
+      },
     },
   },
   typography: {
