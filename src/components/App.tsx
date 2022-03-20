@@ -4,10 +4,10 @@ import * as React from 'react';
 import { Provider } from 'react-redux';
 import { store } from '../state';
 
-import LoadDefinitions from './LoadDefinitions';
-import Definitions from './Definitions';
-import Answering from './Answering';
-import Header from './Header';
+import LoadDefinitions from './definitions/LoadDefinitions';
+import Definitions from './definitions/Definitions';
+import Answering from './answering/Answering';
+import Header from './header/Header';
 
 import { ThemeProvider } from '@mui/material';
 import theme from '../utils/theme';
@@ -20,10 +20,13 @@ const App = () => {
     <ThemeProvider theme={theme}>
       <Provider store={store}>
         <div className="App">
-          {/* <Root sx={{ m: 1, p: 1 }}> */}
           <Root>
-          <Container>
-            <Grid container rowSpacing={1} columnSpacing={0}>
+          <Container sx={{
+                display: "flex",
+                height: "100vh",
+                alignItems: "center",
+          }}>
+            <Grid container rowSpacing={2} columnSpacing={0} >
               <Grid item xs={12}>
                 <Header />
               </Grid>

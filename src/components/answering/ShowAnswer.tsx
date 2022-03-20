@@ -1,9 +1,9 @@
 import React from 'react';
-import { useTypedSelector } from '../hooks/useTypedSelector';
+import { useTypedSelector } from '../../hooks/useTypedSelector';
 import { Box } from '@mui/material';
 import Button from '@mui/material/Button';
 
-import { useAppActions } from '../hooks/useActions';
+import { useAppActions } from '../../hooks/useActions';
 
 const ShowAnswer: React.FC = () => {
   const { word } = useTypedSelector((state) => state.app);

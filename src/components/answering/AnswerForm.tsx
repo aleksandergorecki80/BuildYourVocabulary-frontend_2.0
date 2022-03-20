@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { useTypedSelector } from '../hooks/useTypedSelector';
-import { useAppActions } from '../hooks/useActions';
+import { useTypedSelector } from '../../hooks/useTypedSelector';
+import { useAppActions } from '../../hooks/useActions';
 import Message from './Message';
 import ShowAnswer from './ShowAnswer';
 import TextField from '@mui/material/TextField';

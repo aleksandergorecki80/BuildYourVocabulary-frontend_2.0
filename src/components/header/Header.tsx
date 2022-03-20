@@ -1,6 +1,6 @@
 import { Box } from '@mui/material';
 import { Typography } from '@mui/material';
-import { ReactComponent as Logo } from '../utils/BYV_logo.svg';
+import { ReactComponent as Logo } from './BYV_logo.svg';
 
 const Header: React.FC = () => {
   return (

@@ -1,4 +1,4 @@
-import { useTypedSelector } from '../hooks/useTypedSelector';
+import { useTypedSelector } from '../../hooks/useTypedSelector';
 import AnswerForm from './AnswerForm';
 
 const Answering: React.FC = () => {
