@@ -8,24 +8,31 @@ interface ChildProps {
     partOfSpeech: string;
     text: string;
   };
+  index: number;
+  total: number;
 }
 
 const Definition: React.FC<ChildProps> = (props) => {
-  
   const strippedHtmlText = props.definition.text.replace(/<[^>]+>/g, '');
-  
-    return (
-        <Grid item xs={12}>
-          <Card variant="outlined">
-            <CardContent>
-              <Typography color="text.secondary">
-                {props.definition.partOfSpeech}
-              </Typography>
-              <Typography variant="body2">{strippedHtmlText}</Typography>
-            </CardContent>
-          </Card>
-        </Grid>
-    );
+
+  return (
+    <Grid item xs={12}>
+      <Card variant="outlined">
+         <CardContent>
+          <Typography color="text.secondary" align="left" sx={{fontSize: 'small'}}>
+            {`Definition: ${props.index+1} / ${props.total}`}
+          </Typography>
+          <Typography color="text.secondary">
+            {props.definition.partOfSpeech}
+          </Typography>
+          <Typography variant="body1">
+            {strippedHtmlText.charAt(0).toUpperCase() +
+              strippedHtmlText.slice(1)}
+          </Typography>
+        </CardContent>
+      </Card>
+    </Grid>
+  );
 };
 
 export default Definition;

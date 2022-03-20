@@ -3,12 +3,13 @@ import { useTypedSelector } from '../hooks/useTypedSelector';
 import Definition from './Definition';
 
 import Grid from '@mui/material/Grid';
+import KeyboardDoubleArrowUpIcon from '@mui/icons-material/KeyboardDoubleArrowUp';
 import KeyboardDoubleArrowDownIcon from '@mui/icons-material/KeyboardDoubleArrowDown';
 import { Button } from '@mui/material';
 import CircularProgress from '@mui/material/CircularProgress';
 
 const Definitions: React.FC = () => {
-  const [quantity, setQuantity] = useState(0);
+  const [quantity, setQuantity] = useState<number>(0);
 
   const { data, loading, error } = useTypedSelector(
     (state) => state.definitions
@@ -20,9 +21,16 @@ const Definitions: React.FC = () => {
     }
   }, [data]);
 
-  const onClickHandler = () => {
+  const onClickHandlerPrevious = () => {
+    setQuantity((prevState) => prevState - 1);
+  };
+
+  const onClickHandlerNext = () => {
     setQuantity((prevState) => prevState + 1);
   };
+
+console.log(data.length, 'data.length')
+console.log(quantity, 'quantity')
 
   return (
     <Grid container rowSpacing={1}>
@@ -35,31 +43,53 @@ const Definitions: React.FC = () => {
       )}
       {error ? <h3>{error}</h3> : ''}
 
-      {data &&
-        data.map((definition: any, index) => {
-          return definition.text &&
-            definition.partOfSpeech &&
-            index <= quantity ? (
-            <Definition definition={definition} key={index} />
-          ) : null;
-        })}
 
-      {data.length > 0 && data.length > quantity ? (
-        <>
+      {data.length > 0 && quantity > 0 ? (
+        <>  
           <Grid item xs={12}>
             <Button
-              onClick={onClickHandler}
+              onClick={onClickHandlerPrevious}
               size="small"
-              startIcon={<KeyboardDoubleArrowDownIcon />}
-              endIcon={<KeyboardDoubleArrowDownIcon />}
+              startIcon={<KeyboardDoubleArrowUpIcon />}
+              endIcon={<KeyboardDoubleArrowUpIcon />}
             >
-              Load next definition
+              Previous definition
             </Button>
           </Grid>
         </>
       ) : (
         ''
       )}
+
+
+      {data &&
+        data.map((definition: any, index) => {
+          return definition.text &&
+            definition.partOfSpeech &&
+            index === quantity ? (
+            <Definition definition={definition} key={index} index={index} total={data.length}/>
+          ) : null;
+        })}
+
+
+
+      {data.length > 0 && data.length-1 > quantity ? (
+        <>  
+          <Grid item xs={12}>
+            <Button
+              onClick={onClickHandlerNext}
+              size="small"
+              startIcon={<KeyboardDoubleArrowDownIcon />}
+              endIcon={<KeyboardDoubleArrowDownIcon />}
+            >
+              Next definition
+            </Button>
+          </Grid>
+        </>
+      ) : (
+        ''
+      )}
+
     </Grid>
   );
 };
