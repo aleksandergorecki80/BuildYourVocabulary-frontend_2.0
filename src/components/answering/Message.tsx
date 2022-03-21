@@ -9,11 +9,17 @@ interface CildProps {
   }
 
 const answerIsCorrect = (
-  <Container>
+  <Container
+  sx={{
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  }}
+  >
     <CheckCircleOutlineRoundedIcon
-      sx={{ color: 'success.green', fontSize: 48, fontWeight: 'medium' }}
+      sx={{ color: 'primary.main', fontSize: 32, fontWeight: 'medium' }}
     />
-    <Box sx={{ color: 'success.green', fontSize: 34, fontWeight: 'medium' }}>
+    <Box sx={{ color: 'primary.main', fontSize: 18, fontWeight: 'medium' }}>
       CORRECT ANSWER
     </Box>
   </Container>
@@ -28,9 +34,9 @@ const answerIsWrong = (
     }}
   >
     <HighlightOffRoundedIcon
-      sx={{ color: 'error.red', fontSize: 32, fontWeight: 'medium' }}
+      sx={{ color: 'secondary.main', fontSize: 32, fontWeight: 'medium' }}
     />
-    <Box sx={{ color: 'error.red', fontSize: 18, fontWeight: 'medium' }}>
+    <Box sx={{ color: 'secondary.main', fontSize: 18, fontWeight: 'medium' }}>
       Wrong answer, try again
     </Box>
   </Container>

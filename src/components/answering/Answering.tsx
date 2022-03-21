@@ -15,7 +15,7 @@ const Answering: React.FC = () => {
       {data.length > 0 && !loading ? (
           <AnswerForm />
       ) : (
-        ''
+        null
       )}
     </>
   );

@@ -8,19 +8,20 @@ interface ChildProps {
 }
 
 const PaginationBar: React.FC<ChildProps> = ({ count, setPage }) => {
-    
   const onChangeHandler = (event: React.ChangeEvent<unknown>, page: number) => {
-    console.log(page);
     setPage(page);
   };
 
   return (
-    <Stack spacing={2}>
+    <Stack
+      sx={{ alignItems: 'center', width: '100%' }}
+    >
       <Pagination
         count={count}
         showFirstButton
         showLastButton
         onChange={onChangeHandler}
+        size="small"
       />
     </Stack>
   );

@@ -19,10 +19,7 @@ const Definitions: React.FC = () => {
     }
   }, [data]);
 
-  console.log(page)
-  console.log(data)
-
-  return (
+  const definitionsGrid = (
     <Grid container rowSpacing={1}>
       {loading ? (
         <Grid item xs={12}>
@@ -33,21 +30,29 @@ const Definitions: React.FC = () => {
       )}
       {error ? <h3>{error}</h3> : ''}
 
-
-      {(data.length > 0) &&
+      {data.length > 0 &&
         data.map((definition: any, index) => {
           return definition.text &&
             definition.partOfSpeech &&
-            index === page-1 ? (
-            <Definition definition={definition} key={index} index={index} total={data.length}/>
+            index === page - 1 ? (
+            <Definition
+              definition={definition}
+              key={index}
+              index={index}
+              total={data.length}
+            />
           ) : null;
-        })
-        }
+        })}
 
-      { (data.length > 0) && <PaginationBar count={data.length} setPage={setPage}/>}
-
+      {data.length > 0 && (
+        <Grid item xs={12}>
+          <PaginationBar count={data.length} setPage={setPage} />
+        </Grid>
+      )}
     </Grid>
   );
+
+  return <>{data.length > 0 && !loading ? definitionsGrid : null}</>;
 };
 
 export default Definitions;

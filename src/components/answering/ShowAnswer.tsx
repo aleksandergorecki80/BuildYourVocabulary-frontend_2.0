@@ -1,41 +1,70 @@
-import React from 'react';
-import { useTypedSelector } from '../../hooks/useTypedSelector';
-import { Box } from '@mui/material';
+import * as React from 'react';
 import Button from '@mui/material/Button';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogTitle from '@mui/material/DialogTitle';
+import { Box } from '@mui/material';
 
+import { useEffect } from 'react';
+import { useTypedSelector } from '../../hooks/useTypedSelector';
 import { useAppActions } from '../../hooks/useActions';
 
-const ShowAnswer: React.FC = () => {
-  const { word } = useTypedSelector((state) => state.app);
-  const { resetGame } = useAppActions()
+export default function AlertDialog() {
+  const [open, setOpen] = React.useState(false);
 
-  const onResetGame = () => {
+  const { resetGame } = useAppActions();
+
+  const {
+    app: { word, isAnswerShown },
+  } = useTypedSelector((state) => {
+    return {
+      app: state.app,
+    };
+  });
+
+  useEffect(() => {
+    setOpen(isAnswerShown);
+  }, [isAnswerShown]);
+
+  const handleClose = () => {
+    setOpen(false);
     resetGame();
-  }
+  };
 
   return (
-    <Box>
-
-        <Box>
+    <div>
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">{' The answer is:'}</DialogTitle>
+        <DialogContent>
           <Box
-            sx={{ color: 'primary.text', fontSize: 16, fontWeight: 'medium' }}
+            sx={{
+              color: 'primary.main',
+              fontSize: 28,
+              fontWeight: 'medium',
+              textAlign: 'center',
+            }}
           >
-            The answer is:
+            {`${word.slice(0, 1).toUpperCase()}${word.slice(1, word.length)}`}
           </Box>
-          <Box
-            sx={{ color: 'primary.answerText', fontSize: 34, fontWeight: 'medium' }}
+        </DialogContent>
+        <DialogActions>
+          <Button
+            variant="contained"
+            onClick={handleClose}
+            size="large"
+            fullWidth
+            autoFocus
           >
-            {word}
-          </Box>
-        </Box>
-
-      <Button 
-      onClick={onResetGame}
-      variant="contained" color="primary">
-        Try Again
-      </Button>
-    </Box>
+            Try again
+          </Button>
+        </DialogActions>
+      </Dialog>
+    </div>
   );
-};
-
-export default ShowAnswer;
+}
