@@ -11,14 +11,18 @@ export const fetchDefinitions = (level: string) => {
     try {
       const result = await axios.get(`/api/v1/words/${level}`);
 
+      console.log(result)
+
       const filteredResult = result.data.data.filter((element: Payload) => {
-        return element.text && element.partOfSpeech;
+        return element.text && element.partOfSpeech && element.attributionText && element.attributionUrl;
       });
 
       const payload = filteredResult.map((dataSet: Payload) => {
         return {
           partOfSpeech: dataSet.partOfSpeech,
           text: dataSet.text,
+          attributionText: dataSet.attributionText,
+          attributionUrl: dataSet.attributionUrl,
         };
       });
 
