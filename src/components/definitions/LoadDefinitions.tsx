@@ -18,11 +18,13 @@ const LoadDefinitions: React.FC = () => {
 
   const { fetchDefinitions } = useDefinitionsActions();
 
-  const { data, loading } = useTypedSelector((state) => state.definitions);
+  const { data, loading, error } = useTypedSelector(
+    (state) => state.definitions
+  );
 
   useEffect(() => {
     data.length > 0 || loading ? setShowButton(false) : setShowButton(true);
-  }, [data, loading]);
+  }, [data, loading, error]);
 
   const onLoadDefinitions = () => {
     fetchDefinitions(level);
@@ -30,14 +32,19 @@ const LoadDefinitions: React.FC = () => {
 
   const messageForNotLoadedData = (
     <Typography variant="body1" gutterBottom>
-      Load random definitions and try to guess the word they
-      describe.
+      Load random definitions and try to guess the word they describe.
     </Typography>
   );
 
   const messageForLoadedData = (
     <Typography variant="body1" gutterBottom>
       Reade the definitions and try to gess the meaning. Type your answet below.
+    </Typography>
+  );
+
+  const errorMessage = (
+    <Typography sx={{ color: 'secondary.main', fontSize: 18, fontWeight: 'medium' }}>
+      {error}
     </Typography>
   );
 
@@ -85,6 +92,9 @@ const LoadDefinitions: React.FC = () => {
     <Grid container>
       <Grid item xs={12}>
         {data.length === 0 ? messageForNotLoadedData : messageForLoadedData}
+      </Grid>
+      <Grid item xs={12}>
+        {data.length === 0 && loading === false && error && errorMessage}
       </Grid>
       <Grid item xs={12}>
         {showButton ? loadingDiv : null}

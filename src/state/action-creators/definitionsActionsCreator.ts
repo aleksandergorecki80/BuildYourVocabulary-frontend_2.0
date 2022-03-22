@@ -11,8 +11,6 @@ export const fetchDefinitions = (level: string) => {
     try {
       const result = await axios.get(`/api/v1/words/${level}`);
 
-      console.log(result)
-
       const filteredResult = result.data.data.filter((element: Payload) => {
         return element.text && element.partOfSpeech && element.attributionText && element.attributionUrl;
       });
@@ -38,7 +36,7 @@ export const fetchDefinitions = (level: string) => {
     } catch (err: any) {
       dispatch({
         type: ActionTypes.SERCH_DEFINITIONS_ERROR,
-        payload: err.message,
+        payload: 'Something went wrong, try again',
       });
     }
   };

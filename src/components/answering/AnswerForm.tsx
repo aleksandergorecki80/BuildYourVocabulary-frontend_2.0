@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 import { useAppActions } from '../../hooks/useActions';
 import Message from './Message';
+import validation from '../../utils/validation';
 import ShowAnswer from './ShowAnswer';
+import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import FormGroup from '@mui/material/FormGroup';
 import Button from '@mui/material/Button';
@@ -12,6 +14,7 @@ import ButtonGroup from '@mui/material/ButtonGroup';
 
 const AnswerForm: React.FC = () => {
   const [term, setTerm] = useState('');
+  const [inputError, setInputError] = useState(false);
   const [showIndex, setShowIndex] = useState(0);
 
   const { answeringSuccess, answeringFalse, showAnswer } = useAppActions();
@@ -34,25 +37,36 @@ const AnswerForm: React.FC = () => {
     showAnswer();
   };
 
-  const onCheckTheAnswer = () => {
-    term === word ? answeringSuccess() : answeringFalse();
+  const onChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const validationResult = validation(term);
+    !validationResult ? setInputError(true) : setInputError(false);
+    setTerm(event.target.value)
+  }
+
+  const onCheckTheAnswer = (event: React.ChangeEvent<HTMLInputElement>) => {
+    event.preventDefault();
+    const validationResult = validation(term);   
+    !validationResult ? setInputError(true) : setInputError(false);
+    if(validationResult){
+      term === word ? answeringSuccess() : answeringFalse();
+    }
   };
 
   return (
     <>
       {!isAnswerShown ? (
-        <form>
+        <Box component="form" onSubmit={onCheckTheAnswer}>
           <FormGroup>
             <Grid container rowSpacing={2}>
               <Grid item xs={12}>
                 <TextField
+                  error={inputError}
                   fullWidth
-                  label="Type your answer here"
+                  label={!inputError ? "Type your answer here" : "Error"}
                   variant="filled"
+                  helperText={inputError ? "Incorrect entry." : ''}
                   value={term}
-                  onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-                    setTerm(event.target.value)
-                  }
+                  onChange={onChangeHandler}
                 /></Grid>
                 {showMessage ? <Grid item xs={12}><Message answerCorrect={answerCorrect} /></Grid> : ''}
 
@@ -62,7 +76,7 @@ const AnswerForm: React.FC = () => {
                   variant="contained"
                   color="success"
                   endIcon={<KeyboardArrowRightIcon />}
-                  onClick={onCheckTheAnswer}
+                  
                   disabled={showMessage}
                   fullWidth
                   sx={{
@@ -107,7 +121,7 @@ const AnswerForm: React.FC = () => {
               </Grid>
             </Grid>
           </FormGroup>
-        </form>
+        </Box>
       ) : (
         ''
       )}
