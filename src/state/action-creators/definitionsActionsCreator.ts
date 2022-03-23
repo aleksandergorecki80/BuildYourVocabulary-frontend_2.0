@@ -5,17 +5,34 @@ import { SearchActions } from '../action-interfaces/searchActionInterfaces';
 import { Payload } from '../interfaces/interfaces';
 
 export const fetchDefinitions = (level: string) => {
-
   return async (dispatch: Dispatch<SearchActions>) => {
     dispatch({ type: ActionTypes.SERCH_DEFINITIONS });
     try {
       const result = await axios.get(`/api/v1/words/${level}`);
 
       const filteredResult = result.data.data.filter((element: Payload) => {
-        return element.text && element.partOfSpeech && element.attributionText && element.attributionUrl;
+        return (
+          element.text &&
+          element.partOfSpeech &&
+          element.attributionText &&
+          element.attributionUrl
+        );
       });
 
-      const payload = filteredResult.map((dataSet: Payload) => {
+      const keyword = filteredResult[0].word;
+
+      const removedKeywordArr = filteredResult.filter((sentence: Payload) => {
+        return sentence.text.indexOf(`${keyword}`) === -1;
+      });
+
+      if (removedKeywordArr.length === 0) {
+        return dispatch({
+          type: ActionTypes.SERCH_DEFINITIONS_ERROR,
+          payload: 'Something went wrong, try again',
+        });
+      }
+
+      const payload = removedKeywordArr.map((dataSet: Payload) => {
         return {
           partOfSpeech: dataSet.partOfSpeech,
           text: dataSet.text,
@@ -31,7 +48,7 @@ export const fetchDefinitions = (level: string) => {
 
       dispatch({
         type: ActionTypes.SET_WORD_SUCCESS,
-        payload: filteredResult[0].word,
+        payload: keyword,
       });
     } catch (err: any) {
       dispatch({
