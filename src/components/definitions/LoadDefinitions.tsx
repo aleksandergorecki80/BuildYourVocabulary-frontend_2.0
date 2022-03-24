@@ -38,7 +38,7 @@ const LoadDefinitions: React.FC = () => {
 
   const messageForLoadedData = (
     <Typography variant="body1" gutterBottom>
-      Reade the definitions and try to gess the meaning. Type your answet below.
+      Read the definitions and try to guess the meaning. Type your answer below.
     </Typography>
   );
 
