@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 import { useAppActions } from '../../hooks/useActions';
 import Message from './Message';
@@ -27,6 +27,17 @@ const AnswerForm: React.FC = () => {
     };
   });
 
+  const firstUpdate = useRef(true);
+
+  useEffect(()=> {
+    if(firstUpdate.current){
+      firstUpdate.current = false;
+      return;
+    }
+    const validationResult = validation(term);
+    !validationResult ? setInputError(true) : setInputError(false);
+  }, [term])
+
   const onShowLetter = () => {
     const result = word.slice(0, showIndex + 1);
     setShowIndex((prevState) => prevState + 1);
@@ -38,8 +49,6 @@ const AnswerForm: React.FC = () => {
   };
 
   const onChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const validationResult = validation(term);
-    !validationResult ? setInputError(true) : setInputError(false);
     setTerm(event.target.value)
   }
 
@@ -48,7 +57,7 @@ const AnswerForm: React.FC = () => {
     const validationResult = validation(term);   
     !validationResult ? setInputError(true) : setInputError(false);
     if(validationResult){
-      term === word ? answeringSuccess() : answeringFalse();
+      term.trim().toLowerCase() === word.trim().toLowerCase() ? answeringSuccess() : answeringFalse();
     }
   };
 

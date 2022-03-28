@@ -1,7 +1,7 @@
 
 const patterns = {
     //eslint-disable-next-line
-    word: new RegExp('^[a-ząĄćĆĘęŁłŃńÓóŚśŹźŻż\d]{1,20}$'),
+    word: new RegExp('^[a-zA-ZąĄćĆĘęŁłŃńÓóŚśŹźŻż\d]{1,20}$'),
 }
 
 const validation = (input: string) => {
