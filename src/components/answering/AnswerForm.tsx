@@ -49,7 +49,7 @@ const AnswerForm: React.FC = () => {
   };
 
   const onChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setTerm(event.target.value)
+    setTerm(event.target.value.trim())
   }
 
   const onCheckTheAnswer = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -57,7 +57,7 @@ const AnswerForm: React.FC = () => {
     const validationResult = validation(term);   
     !validationResult ? setInputError(true) : setInputError(false);
     if(validationResult){
-      term.trim().toLowerCase() === word.trim().toLowerCase() ? answeringSuccess() : answeringFalse();
+      term.toLowerCase() === word.toLowerCase() ? answeringSuccess() : answeringFalse();
     }
   };
 
