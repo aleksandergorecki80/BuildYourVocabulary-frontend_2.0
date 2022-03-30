@@ -17,7 +17,6 @@ interface ChildProps {
 
 const Definition: React.FC<ChildProps> = (props) => {
   const strippedHtmlText = props.definition.text.replace(/<[^>]+>/g, '');
-
   return (
     <Card variant="outlined" sx={{ width: "100%"}}>
       <CardContent>
