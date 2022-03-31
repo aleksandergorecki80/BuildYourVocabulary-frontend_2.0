@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, useLayoutEffect } from 'react';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 import { useAppActions } from '../../hooks/useActions';
 import Message from './Message';
@@ -28,6 +28,13 @@ const AnswerForm: React.FC = () => {
   });
 
   const firstUpdate = useRef(true);
+  const inputRefDiv = useRef<HTMLDivElement>(null);
+
+  useLayoutEffect(() => {
+    if(null !== inputRefDiv.current){
+      inputRefDiv.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  })
 
   useEffect(()=> {
     if(firstUpdate.current){
@@ -68,6 +75,7 @@ const AnswerForm: React.FC = () => {
           <FormGroup>
             <Grid container rowSpacing={2}>
               <Grid item xs={12}>
+                <div ref={inputRefDiv}>
                 <TextField
                   error={inputError}
                   fullWidth
@@ -76,7 +84,9 @@ const AnswerForm: React.FC = () => {
                   helperText={inputError ? "Incorrect entry." : ''}
                   value={term}
                   onChange={onChangeHandler}
-                /></Grid>
+                  />                 
+                  </div>
+                  </Grid>
                 {showMessage ? <Grid item xs={12}><Message answerCorrect={answerCorrect} /></Grid> : ''}
 
               <Grid item xs={12}>
