@@ -7,10 +7,11 @@ import { Theme } from '@mui/material/styles/createTheme';
 
 interface ChildProps {
   count: number;
+  page: number;
   setPage: (page: number) => void;
 }
 
-const PaginationBar: React.FC<ChildProps> = ({ count, setPage }) => {
+const PaginationBar: React.FC<ChildProps> = ({ count, page, setPage }) => {
   const onChangeHandler = (event: React.ChangeEvent<unknown>, page: number) => {
     setPage(page);
   };
@@ -23,6 +24,7 @@ const PaginationBar: React.FC<ChildProps> = ({ count, setPage }) => {
     >
       <Pagination
         count={count}
+        page={page}
         showFirstButton={isSmallScreen ? false : true}
         showLastButton={isSmallScreen ? false : true}
         boundaryCount={isSmallScreen ? 0 : 2}

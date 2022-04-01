@@ -34,7 +34,7 @@ const AnswerForm: React.FC = () => {
     if(null !== inputRefDiv.current){
       inputRefDiv.current.scrollIntoView({ behavior: 'smooth' });
     }
-  })
+  });
 
   useEffect(()=> {
     if(firstUpdate.current){

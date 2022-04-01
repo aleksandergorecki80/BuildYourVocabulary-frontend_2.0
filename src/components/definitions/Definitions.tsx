@@ -31,9 +31,11 @@ const Definitions: React.FC = () => {
             definition.partOfSpeech &&
             index === page - 1 ? (
             <Definition
+              setPage={setPage}
               definition={definition}
               key={index}
               index={index}
+              page={page}
               total={data.length}
             />
           ) : null;
@@ -41,7 +43,7 @@ const Definitions: React.FC = () => {
 
       {data.length > 0 && (
         <Grid item xs={12}>
-          <PaginationBar count={data.length} setPage={setPage} />
+          <PaginationBar count={data.length} setPage={setPage} page={page} />
         </Grid>
       )}
     </Grid>
