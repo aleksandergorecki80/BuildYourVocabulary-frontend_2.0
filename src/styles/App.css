@@ -8,7 +8,24 @@
   justify-content: center;
 }
 
-.szukaj-mnie-cierpliwie {
-  width: 100%;
-  background-color: plum;
+.card-container {
+  overflow: clip;
+}
+
+.slide {
+  position: relative; 
+  background-color: aliceblue;
+  
+  transition: transform 500ms cubic-bezier(0.44, 0.13, 0.55, 1.49);
+}
+
+.move-to-right {
+  transform: translateX(100%);
+}
+.move-to-left {
+  transform: translateX(-100%);
+}
+
+.slide-in {
+  transform: translateX(0);
 }

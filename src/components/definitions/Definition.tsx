@@ -3,7 +3,7 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import Link from '@mui/material/Link';
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
 interface ChildProps {
   definition: {
@@ -23,8 +23,14 @@ const Definition: React.FC<ChildProps> = (props) => {
 
   const [touchStart, setTouchStart] = useState(0);
   const [touchEnd, setTouchEnd] = useState(0);
-
+  const [slideStyles, setSlideStyles] = useState('slide move-to-left');
+  
+  
   const sliderfDiv = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+      setSlideStyles((prevState) => `${prevState} slide-in`)
+  }, [props.page])
 
   function handleTouchStart(e: any) {
     setTouchStart(e.targetTouches[0].clientX);
@@ -39,9 +45,9 @@ const Definition: React.FC<ChildProps> = (props) => {
     if (touchStart - touchEnd > 150) {
       if (null !== sliderfDiv.current) {
         // do your stuff here for left swipe
-        // moveSliderRight();
+        console.log('moveSliderRight()');
         props.setPage(props.page + 1);
-        // sliderfDiv.current.setAttribute('style', 'white-space: pre; position: absolute; left: -9999px;');;
+        sliderfDiv.current.setAttribute('class', 'democlass');
       }
     }
 
@@ -49,16 +55,18 @@ const Definition: React.FC<ChildProps> = (props) => {
       if (null !== sliderfDiv.current) {
         if (props.page - 1 > 0) {
           // do your stuff here for right swipe
-          // moveSliderLeft();
+          console.log('moveSliderLeft()');
           props.setPage(props.page - 1);
-          // sliderfDiv.current.setAttribute('style', 'white-space: pre; position: absolute; left: -9999px;');;
+          sliderfDiv.current.setAttribute('class', 'democlass');
         }
       }
     }
   }
 
   return (
+    <div className="card-container">
     <div
+    className={slideStyles}
       ref={sliderfDiv}
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
@@ -110,6 +118,7 @@ const Definition: React.FC<ChildProps> = (props) => {
           </Grid>
         </CardContent>
       </Card>
+    </div>
     </div>
   );
 };
