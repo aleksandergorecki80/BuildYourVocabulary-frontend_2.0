@@ -13,6 +13,7 @@
 }
 
 .slide {
+  width: 99%;
   position: relative; 
   background-color: aliceblue;
   

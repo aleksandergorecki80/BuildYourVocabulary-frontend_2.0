@@ -3,7 +3,7 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import Link from '@mui/material/Link';
-import { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 
 interface ChildProps {
   definition: {
@@ -21,104 +21,121 @@ interface ChildProps {
 const Definition: React.FC<ChildProps> = (props) => {
   const strippedHtmlText = props.definition.text.replace(/<[^>]+>/g, '');
 
-  const [touchStart, setTouchStart] = useState(0);
-  const [touchEnd, setTouchEnd] = useState(0);
+  const [touchStart, setTouchStart] = useState<null | number>(null);
+  const [touchEnd, setTouchEnd] = useState<null | number>(null);
   const [slideStyles, setSlideStyles] = useState('slide move-to-left');
-  
-  
+
   const sliderfDiv = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-      setSlideStyles((prevState) => `${prevState} slide-in`)
-  }, [props.page])
+    setSlideStyles((prevState) => `${prevState} slide-in`);
+  }, [props.page]);
 
-  function handleTouchStart(e: any) {
+  function handleTouchStart(e: React.TouchEvent) {
     setTouchStart(e.targetTouches[0].clientX);
   }
 
-  function handleTouchMove(e: any) {
+  function handleTouchMove(e: React.TouchEvent) {
     setTouchEnd(e.targetTouches[0].clientX);
+    if (
+      null !== sliderfDiv.current &&
+      touchEnd !== null &&
+      touchStart !== null
+    ) {
+      sliderfDiv.current.setAttribute(
+        'style',
+        `transform: translateX(${touchEnd - touchStart}px)`
+      );
+      if (touchStart - touchEnd > 100 || touchStart - touchEnd < -100) {
+        handleTouchEnd();
+      }
+    }
   }
 
   function handleTouchEnd() {
-    console.log('handleTouchEnd');
-    if (touchStart - touchEnd > 150) {
+    if (
+      touchStart !== null &&
+      touchEnd !== null &&
+      touchStart - touchEnd > 150
+    ) {
       if (null !== sliderfDiv.current) {
-        // do your stuff here for left swipe
-        console.log('moveSliderRight()');
         props.setPage(props.page + 1);
-        sliderfDiv.current.setAttribute('class', 'democlass');
       }
     }
 
-    if (touchStart - touchEnd < -150) {
+    if (
+      touchStart !== null &&
+      touchEnd !== null &&
+      touchStart - touchEnd < -150
+    ) {
       if (null !== sliderfDiv.current) {
         if (props.page - 1 > 0) {
-          // do your stuff here for right swipe
-          console.log('moveSliderLeft()');
           props.setPage(props.page - 1);
-          sliderfDiv.current.setAttribute('class', 'democlass');
         }
+      }
+    } else {
+      if (null !== sliderfDiv.current) {
+        sliderfDiv.current.setAttribute('style', `transform: translateX(0px)`);
       }
     }
   }
 
   return (
     <div className="card-container">
-    <div
-    className={slideStyles}
-      ref={sliderfDiv}
-      onTouchStart={handleTouchStart}
-      onTouchMove={handleTouchMove}
-      onTouchEnd={handleTouchEnd}
-    >
-      <Card variant="outlined" sx={{ width: '100%' }}>
-        <CardContent>
-          <Grid container rowSpacing={2}>
-            <Grid item xs={12}>
-              <Typography
-                color="text.secondary"
-                align="left"
-                sx={{ fontSize: 'small' }}
-              >
-                {`Definition: ${props.index + 1} / ${props.total}`}
-              </Typography>
-            </Grid>
-
-            <Grid item xs={12}>
-              <Typography color="text.secondary">
-                {props.definition.partOfSpeech}
-              </Typography>
-            </Grid>
-            <Grid item xs={12}>
-              <Typography variant="body1">
-                {strippedHtmlText.charAt(0).toUpperCase() +
-                  strippedHtmlText.slice(1)}
-              </Typography>
-            </Grid>
-            <Grid item xs={12}>
-              <Typography
-                color="text.secondary"
-                align="left"
-                sx={{ fontSize: 'small' }}
-              >
-                Source:
-                <Link
-                  href={props.definition.attributionUrl}
-                  underline="hover"
-                  target="_blank"
+      <div
+        className={slideStyles}
+        ref={sliderfDiv}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+      >
+        <Card variant="outlined" sx={{ width: '100%' }}>
+          <CardContent>
+            <Grid container rowSpacing={2}>
+              <Grid item xs={12}>
+                <Typography
+                  color="text.secondary"
+                  align="left"
+                  sx={{ fontSize: 'small' }}
                 >
-                  {props.definition.attributionText.slice(
-                    4,
-                    props.definition.attributionText.length
-                  )}
-                </Link>
-              </Typography>
+                  {`Definition: ${props.index + 1} / ${props.total}`}
+                </Typography>
+              </Grid>
+
+              <Grid item xs={12}>
+                <Typography color="text.secondary">
+                  {props.definition.partOfSpeech}
+                </Typography>
+              </Grid>
+              <Grid item xs={12}>
+                <Typography variant="body1">
+                  {strippedHtmlText.charAt(0).toUpperCase() +
+                    strippedHtmlText.slice(1)}
+                </Typography>
+              </Grid>
+              <Grid item xs={12}>
+                <Typography
+                  color="text.secondary"
+                  align="left"
+                  sx={{ fontSize: 'small' }}
+                >
+                  Source:
+                  <Link
+                    href={props.definition.attributionUrl}
+                    underline="hover"
+                    target="_blank"
+                  >
+                    {props.definition.attributionText.slice(
+                      4,
+                      props.definition.attributionText.length
+                    )}
+                  </Link>
+                </Typography>
+              </Grid>
             </Grid>
-          </Grid>
-        </CardContent>
-      </Card>
-    </div>
+          </CardContent>
+        </Card>
+      </div>
     </div>
   );
 };
