@@ -3,7 +3,7 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import Link from '@mui/material/Link';
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 
 interface ChildProps {
   definition: {
@@ -23,13 +23,7 @@ const Definition: React.FC<ChildProps> = (props) => {
 
   const [touchStart, setTouchStart] = useState<null | number>(null);
   const [touchEnd, setTouchEnd] = useState<null | number>(null);
-  const [slideStyles, setSlideStyles] = useState('slide move-to-left');
-
   const sliderfDiv = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    setSlideStyles((prevState) => `${prevState} slide-in`);
-  }, [props.page]);
 
   function handleTouchStart(e: React.TouchEvent) {
     setTouchStart(e.targetTouches[0].clientX);
@@ -42,10 +36,6 @@ const Definition: React.FC<ChildProps> = (props) => {
       touchEnd !== null &&
       touchStart !== null
     ) {
-      sliderfDiv.current.setAttribute(
-        'style',
-        `transform: translateX(${touchEnd - touchStart}px)`
-      );
       if (touchStart - touchEnd > 100 || touchStart - touchEnd < -100) {
         handleTouchEnd();
       }
@@ -53,12 +43,13 @@ const Definition: React.FC<ChildProps> = (props) => {
   }
 
   function handleTouchEnd() {
+
     if (
       touchStart !== null &&
       touchEnd !== null &&
       touchStart - touchEnd > 150
     ) {
-      if (null !== sliderfDiv.current) {
+      if (null !== sliderfDiv.current && props.page <= props.total-1) {
         props.setPage(props.page + 1);
       }
     }
@@ -73,17 +64,13 @@ const Definition: React.FC<ChildProps> = (props) => {
           props.setPage(props.page - 1);
         }
       }
-    } else {
-      if (null !== sliderfDiv.current) {
-        sliderfDiv.current.setAttribute('style', `transform: translateX(0px)`);
-      }
-    }
+    } 
   }
 
   return (
     <div className="card-container">
       <div
-        className={slideStyles}
+        className="slide fade-in-image"
         ref={sliderfDiv}
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
