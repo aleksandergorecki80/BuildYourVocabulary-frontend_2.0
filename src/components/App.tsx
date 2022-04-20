@@ -22,11 +22,11 @@ const App = () => {
         <div className="App">
           <Root>
             <Container
-              sx={{
-                display: 'flex',
-                height: '100vh',
-                alignItems: 'center',
-              }}
+              // sx={{
+              //   display: 'flex',
+              //   height: '100vh',
+              //   alignItems: 'center',
+              // }}
             >
               <Grid container rowSpacing={2} columnSpacing={0}>
                 <Grid item xs={12}>
