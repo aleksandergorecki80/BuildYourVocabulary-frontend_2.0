@@ -43,13 +43,12 @@ const Definition: React.FC<ChildProps> = (props) => {
   }
 
   function handleTouchEnd() {
-
     if (
       touchStart !== null &&
       touchEnd !== null &&
       touchStart - touchEnd > 150
     ) {
-      if (null !== sliderfDiv.current && props.page <= props.total-1) {
+      if (null !== sliderfDiv.current && props.page <= props.total - 1) {
         props.setPage(props.page + 1);
       }
     }
@@ -64,65 +63,62 @@ const Definition: React.FC<ChildProps> = (props) => {
           props.setPage(props.page - 1);
         }
       }
-    } 
+    }
   }
 
   return (
-    <div className="card-container">
-      <div
-        className="slide fade-in-image"
-        ref={sliderfDiv}
-        onTouchStart={handleTouchStart}
-        onTouchMove={handleTouchMove}
-        onTouchEnd={handleTouchEnd}
-      >
-        <Card variant="outlined" sx={{ width: '100%' }}>
-          <CardContent>
-            <Grid container rowSpacing={2}>
-              <Grid item xs={12}>
-                <Typography
-                  color="text.secondary"
-                  align="left"
-                  sx={{ fontSize: 'small' }}
-                >
-                  {`Definition: ${props.index + 1} / ${props.total}`}
-                </Typography>
-              </Grid>
-
-              <Grid item xs={12}>
-                <Typography color="text.secondary">
-                  {props.definition.partOfSpeech}
-                </Typography>
-              </Grid>
-              <Grid item xs={12}>
-                <Typography variant="body1">
-                  {strippedHtmlText.charAt(0).toUpperCase() +
-                    strippedHtmlText.slice(1)}
-                </Typography>
-              </Grid>
-              <Grid item xs={12}>
-                <Typography
-                  color="text.secondary"
-                  align="left"
-                  sx={{ fontSize: 'small' }}
-                >
-                  Source:
-                  <Link
-                    href={props.definition.attributionUrl}
-                    underline="hover"
-                    target="_blank"
-                  >
-                    {props.definition.attributionText.slice(
-                      4,
-                      props.definition.attributionText.length
-                    )}
-                  </Link>
-                </Typography>
-              </Grid>
+    <div
+      ref={sliderfDiv}
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
+    >
+      <Card variant="outlined" sx={{ width: '100%' }}>
+        <CardContent>
+          <Grid container rowSpacing={2}>
+            <Grid item xs={12}>
+              <Typography
+                color="text.secondary"
+                align="left"
+                sx={{ fontSize: 'small' }}
+              >
+                {`Definition: ${props.index + 1} / ${props.total}`}
+              </Typography>
             </Grid>
-          </CardContent>
-        </Card>
-      </div>
+
+            <Grid item xs={12}>
+              <Typography color="text.secondary">
+                {props.definition.partOfSpeech}
+              </Typography>
+            </Grid>
+            <Grid item xs={12}>
+              <Typography variant="body1">
+                {strippedHtmlText.charAt(0).toUpperCase() +
+                  strippedHtmlText.slice(1)}
+              </Typography>
+            </Grid>
+            <Grid item xs={12}>
+              <Typography
+                color="text.secondary"
+                align="left"
+                sx={{ fontSize: 'small' }}
+              >
+                Source:
+                <Link
+                  href={props.definition.attributionUrl}
+                  underline="hover"
+                  target="_blank"
+                >
+                  {props.definition.attributionText.slice(
+                    4,
+                    props.definition.attributionText.length
+                  )}
+                </Link>
+              </Typography>
+            </Grid>
+          </Grid>
+        </CardContent>
+      </Card>
     </div>
   );
 };
