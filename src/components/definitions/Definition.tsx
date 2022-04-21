@@ -1,4 +1,7 @@
-import Link from '@mui/material/Link';
+import * as React from 'react';
+import ListItem from '@mui/material/ListItem';
+import ListItemText from '@mui/material/ListItemText';
+import Typography from '@mui/material/Typography';
 
 interface ChildProps {
   definition: {
@@ -14,26 +17,33 @@ interface ChildProps {
 const Definition: React.FC<ChildProps> = (props) => {
   const strippedHtmlText = props.definition.text.replace(/<[^>]+>/g, '');
 
-
-
   return (
-      <div>
-          {`Definition: ${props.index + 1} / ${props.total}`}
-          {props.definition.partOfSpeech}
-          {strippedHtmlText.charAt(0).toUpperCase() +
-            strippedHtmlText.slice(1)}
-                <Link
-                  href={props.definition.attributionUrl}
-                  underline="hover"
-                  target="_blank"
-                >
-                  {props.definition.attributionText.slice(
-                    4,
-                    props.definition.attributionText.length
-                  )}
-                </Link>
-      </div>
-
+    <>
+      <ListItem alignItems="flex-start">
+        <ListItemText
+          primary={`${props.index + 1}/${props.total} - ${
+            props.definition.partOfSpeech
+          } `}
+          secondary={
+            <React.Fragment>
+              <Typography
+                sx={{
+                  display: 'inline-block',
+                  fontSize: 'medium',
+                  fontStyle: 'italic',
+                }}
+                component="span"
+                variant="body2"
+                color="text.primary"
+              >
+                {strippedHtmlText.charAt(0).toUpperCase() +
+                  strippedHtmlText.slice(1)}
+              </Typography>
+            </React.Fragment>
+          }
+        />
+      </ListItem>
+    </>
   );
 };
 

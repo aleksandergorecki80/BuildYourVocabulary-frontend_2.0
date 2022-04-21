@@ -1,10 +1,9 @@
-// import { useEffect, useState } from 'react';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 import Definition from './Definition';
-// import PaginationBar from './PaginationBar';
 
 import Grid from '@mui/material/Grid';
 import CircularProgress from '@mui/material/CircularProgress';
+import { List } from '@mui/material';
 
 const Definitions: React.FC = () => {
   const { data, loading } = useTypedSelector((state) => state.definitions);
@@ -17,17 +16,29 @@ const Definitions: React.FC = () => {
 
   const definitionsGrid = (
     <>
-      {data.length > 0 &&
-        data.map((definition: any, index) => {
-          return definition.text && definition.partOfSpeech ? (
-            <Definition
-              definition={definition}
-              key={index}
-              index={index}
-              total={data.length}
-            />
-          ) : null;
-        })}
+      <List
+        sx={{
+          width: '100%',
+          bgcolor: 'background.paper',
+          position: 'relative',
+          overflow: 'auto',
+          maxHeight: '100%',
+          '& ul': { padding: 0 },
+          marginBottom: '250px',
+        }}
+      >
+        {data.length > 0 &&
+          data.map((definition: any, index) => {
+            return definition.text && definition.partOfSpeech ? (
+              <Definition
+                definition={definition}
+                key={index}
+                index={index}
+                total={data.length}
+              />
+            ) : null;
+          })}
+      </List>
     </>
   );
 

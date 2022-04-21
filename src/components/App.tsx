@@ -14,6 +14,7 @@ import theme from '../utils/theme';
 import { Root } from '../utils/Root';
 import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
+import Paper from '@mui/material/Paper';
 
 const App = () => {
   return (
@@ -21,13 +22,7 @@ const App = () => {
       <Provider store={store}>
         <div className="App">
           <Root>
-            <Container
-              // sx={{
-              //   display: 'flex',
-              //   height: '100vh',
-              //   alignItems: 'center',
-              // }}
-            >
+            <Container>
               <Grid container rowSpacing={2} columnSpacing={0}>
                 <Grid item xs={12}>
                   <Header />
@@ -39,7 +34,9 @@ const App = () => {
                   <Definitions />
                 </Grid>
                 <Grid item xs={12}>
-                  <Answering />
+                  <Paper sx={{ position: 'fixed', bottom: 0 }} elevation={3}>
+                    <Answering />
+                  </Paper>
                 </Grid>
               </Grid>
             </Container>
