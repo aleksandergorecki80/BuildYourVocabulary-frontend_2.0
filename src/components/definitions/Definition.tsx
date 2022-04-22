@@ -30,7 +30,6 @@ const Definition: React.FC<ChildProps> = (props) => {
                 sx={{
                   display: 'inline-block',
                   fontSize: 'medium',
-                  fontStyle: 'italic',
                 }}
                 component="span"
                 variant="body2"
@@ -41,6 +40,9 @@ const Definition: React.FC<ChildProps> = (props) => {
               </Typography>
             </React.Fragment>
           }
+          sx={{
+            textAlign: 'center'
+          }}
         />
       </ListItem>
     </>

@@ -34,7 +34,15 @@ const App = () => {
                   <Definitions />
                 </Grid>
                 <Grid item xs={12}>
-                  <Paper sx={{ position: 'fixed', bottom: 0 }} elevation={3}>
+                  <Paper sx={{ 
+                    position: 'fixed', 
+                    bottom: 0, 
+                    left: 0, 
+                    right: 0,
+                    display: 'flex',
+                    width: '100%',
+                    justifyContent: 'center'
+                    }}>
                     <Answering />
                   </Paper>
                 </Grid>
